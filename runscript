@@ -1,0 +1,20 @@
+ #!/bin/bash
+
+ #PBS -N omp-test
+ #PBS -q testq
+ #PBS -l nodes=1:ppn=16
+ #PBS -l walltime=02:10:00
+ #PBS -l mem=10G
+ 
+ cd "${PBS_O_WORKDIR}"
+ source activate tf-env
+ 
+ export OMP_NUM_THREADS="${PBS_NUM_PPN}"
+ mpiexec -np 2 python /newhome/kp16050/time_parallel_FFT.py
+ mpiexec -np 4 python /newhome/kp16050/time_parallel_FFT.py
+ mpiexec -np 6 python /newhome/kp16050/time_parallel_FFT.py
+ mpiexec -np 8 python /newhome/kp16050/time_parallel_FFT.py
+ mpiexec -np 10 python /newhome/kp16050/time_parallel_FFT.py
+ mpiexec -np 12 python /newhome/kp16050/time_parallel_FFT.py
+ mpiexec -np 14 python /newhome/kp16050/time_parallel_FFT.py
+ mpiexec -np 16 python /newhome/kp16050/time_parallel_FFT.py
